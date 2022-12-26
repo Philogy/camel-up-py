@@ -129,8 +129,6 @@ def show_evs(game: Game):
 
 
 def parse_action(game: Game, inp: str) -> Optional[OwnedAction | CmdAction]:
-    inp = inp.strip()
-
     split_res = inp.split()
     if len(split_res) == 0:
         raise ParseError(
@@ -193,7 +191,7 @@ def main():
     game = init_game(*players)
     history_stack = []
     save_stack = []
-    while (inp := input('> ')) != 'exit':
+    while (inp := input('> ').strip()) != 'exit':
         try:
             action = parse_action(game, inp)
         except ParseError as err:
